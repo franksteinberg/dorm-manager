@@ -17,7 +17,6 @@ class CanAddResidentsTest extends TestCase
     public function it_can_store_a_valid_resident()
     {
         // Arrange
-        $this->withoutExceptionHandling();
         $attributes = [
             'first_name' => 'Miverva',
             'last_name' => 'McGalleon',
