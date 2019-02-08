@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/residents', 'ResidentController@store');
 Route::delete('/residents/{resident}', 'ResidentController@destroy');
 Route::patch('/residents/{resident}', 'ResidentController@update');
+Route::get('/residents/{resident}', 'ResidentController@show');

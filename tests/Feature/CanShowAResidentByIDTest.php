@@ -6,74 +6,39 @@ use App\Resident;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class CanUpdateResidentsTest extends TestCase
+class CanShowAResidentByIDTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
      * @test
      */
-    public function it_can_update_a_valid_resident_with_valid_data()
+    public function it_can_successfully_get_a_resident_by_id()
     {
         // Arrange
         $resident = factory(Resident::class)->create();
-        $newData = [
-            'first_name' => 'Barty',
-            'last_name' => 'Crouch Jr',
-            'address1' => 'new address1',
-            'address2' => 'new address2',
-            'student_id' => 'new student_id',
-            'birth_date' => '1989-01-01',
-            'phone' => '555-555-1337',
-        ];
 
         // Act
-        $response = $this->json('PATCH', "api/residents/{$resident->id}", $newData);
-
+        $response = $this->json('GET', "api/residents/{$resident->id}");
+        $actualResident = json_decode($response->content())->data;
 
         // Assert
         $response->assertStatus(200);
-        $this->assertDatabaseHas('residents', array_merge(['id' => $resident->id], $newData));
+        $this->assertEquals($resident->id, $actualResident->id);
+        $this->assertEquals($resident->first_name, $actualResident->first_name);
+        $this->assertEquals($resident->last_name, $actualResident->last_name);
     }
 
     /**
      * @test
      */
-    public function if_updating_an_resident_that_does_not_exist_an_appropriate_response_is_returned()
+    public function if_getting_a_resident_that_does_not_exist_an_appropriate_response_is_returned()
     {
         // Act
-        $response = $this->json('PATCH', "api/residents/InvalidResidentID", []);
+        $response = $this->json('GET', "api/residents/InvalidResidentID");
 
 
         // Assert
         $response->assertStatus(404);
-    }
-
-    /**
-     * @test
-     */
-    public function updating_a_resident_with_invalid_data_returns_an_appropriate_response_and_does_not_update_record()
-    {
-        // Arrange
-        $resident = factory(Resident::class)->create();
-        $updates = [
-            'first_name' => ['Must', 'Be', 'A', 'String'],
-            'birth_date' => 'not a date',
-        ];
-        $expectedResponse = json_encode([
-            "message" => "The given data was invalid.",
-            "errors" => [
-                "first_name" => ["The first name must be a string."],
-                "birth_date" => ["The birth date is not a valid date."]
-            ]
-        ]);
-
-        // Act
-        $response = $this->json('PATCH', "api/residents/{$resident->id}", $updates);
-
-
-        // Assert
-        $response->assertStatus(422);
-        $this->assertEquals($expectedResponse, $response->content());
     }
 }

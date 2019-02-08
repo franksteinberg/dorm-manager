@@ -65,7 +65,11 @@ class ResidentController extends Controller
      */
     public function show(Resident $resident)
     {
-        //
+        return response()->json([
+            'data' => $resident,
+            'error' => false,
+            'msg' => "Successfully Retrieved Resident: [{$resident->id}] {$resident->first_name} {$resident->last_name}",
+        ], 200);
     }
 
     /**
