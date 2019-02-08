@@ -98,6 +98,11 @@ class ResidentController extends Controller
      */
     public function destroy(Resident $resident)
     {
-        //
+        $resident->delete();
+        return response()->json([
+            'data' => null,
+            'error' => false,
+            'msg' => "Successfully Deleted Resident: [{$resident->id}] {$resident->first_name} {$resident->last_name}",
+        ]);
     }
 }

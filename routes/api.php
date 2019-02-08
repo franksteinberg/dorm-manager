@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/residents', 'ResidentController@store');
+Route::delete('/residents/{resident}', 'ResidentController@destroy');

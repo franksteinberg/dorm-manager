@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CanAddResidentsTest extends TestCase
 {
@@ -30,5 +28,30 @@ class CanAddResidentsTest extends TestCase
         // Assert
         $response->assertStatus(201);
         $this->assertDatabaseHas('residents', $attributes);
+    }
+
+    /**
+     * @test
+     */
+    public function storing_a_resident_with_invalid_data_returns_an_appropriate_response()
+    {
+        // Arrange
+        $attributes = [
+            'gender' => 'INVALID',
+        ];
+        $expectedErrors = [
+            'first_name' => ['The first name field is required.'],
+            'last_name' => ['The last name field is required.'],
+            'gender' => ['The selected gender is invalid.'],
+        ];
+
+        // Act
+        $response = $this->json('POST', 'api/residents', $attributes);
+
+
+        // Assert
+        $response->assertStatus(422);
+        $this->assertEquals($expectedErrors, json_decode($response->content(), true)['errors']);
+        $this->assertDatabaseMissing('residents', $attributes);
     }
 }
