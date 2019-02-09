@@ -11,26 +11,26 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
     </head>
-    <body class="bg-blue-lightest">
+    <body class="bg-teal-lightest">
         <div class="container p-4 mx-auto">
-            <div class="title text-5xl leading-loose tracking-tight text-blue-darker m-3">
+            <div class="text-5xl leading-loose tracking-tight text-blue-darker m-3 uppercase">
                 Add a New Resident
             </div>
             <form name="create-resident" class="p-4 pb-16 bg-white w-100 border border-grey-light shadow shadow-lg rounded">
-                <div class="block uppercase tracking-wide text-grey-darker text-lg font-bold mb-2">Student Info</div>
+                <div class="block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2">Basic Info</div>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="first_name">
                             First Name
                         </label>
-                        <input name="first_name" required aria-required="true" type="text" maxlength="50" placeholder="Jane" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="first_name" required aria-required="true" type="text" maxlength="50" placeholder="Jane" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                         <p class="hidden text-red text-xs italic"></p>
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="last_name">
                             Last Name
                         </label>
-                        <input name="last_name" required aria-required="true" type="text" maxlength="50" placeholder="Doe" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="last_name" required aria-required="true" type="text" maxlength="50" placeholder="Doe" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -39,7 +39,7 @@
                             Gender
                         </label>
                         <div class="relative">
-                            <select name="gender" required aria-required="true" class="block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                            <select name="gender" required aria-required="true" class="block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal">
                                 <option>Choose one...</option>
                                 <option value="F">Female</option>
                                 <option value="M">Male</option>
@@ -53,30 +53,30 @@
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="birth_date">
                             Date of Birth
                         </label>
-                        <input name="birth_date" maxlength="50" type="date" placeholder="12/22/1997" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="birth_date" maxlength="50" type="date" placeholder="12/22/1997" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="student_id">
                             Student ID
                         </label>
-                        <input name="student_id" maxlength="50" type="text" placeholder="JD-8513789" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="student_id" maxlength="50" type="text" placeholder="JD-8513789" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                 </div>
 
-                <div class="block uppercase tracking-wide text-grey-darker text-lg font-bold mb-2 mt-8">Address Info</div>
+                <div class="block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2 mt-8">Address Info</div>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="address1">
                             Address 1
                         </label>
-                        <input name="address1" type="text" maxlength="100" placeholder="200 Woodstock Lane" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="address1" type="text" maxlength="100" placeholder="200 Woodstock Lane" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                         <p class="hidden text-red text-xs italic"></p>
                     </div>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="address2">
                             Address 2
                         </label>
-                        <input name="address2" type="text" maxlength="100" placeholder="Unit 3F" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="address2" type="text" maxlength="100" placeholder="Unit 3F" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                         <p class="hidden text-red text-xs italic"></p>
                     </div>
                 </div>
@@ -85,14 +85,14 @@
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="city">
                             City
                         </label>
-                        <input name="city" type="text" maxlength="50" placeholder="Albuquerque" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="city" type="text" maxlength="50" placeholder="Albuquerque" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="state">
                             State
                         </label>
                         <div class="relative">
-                            <select name="state" class="block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                            <select name="state" class="block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal">
                                 <option>Select one...</option>
                                 @foreach(config('states') as $stateAbbr => $stateName)
                                     <option value="{{$stateAbbr}}">{{$stateName}}</option>
@@ -107,7 +107,7 @@
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="zip">
                             Zip
                         </label>
-                        <input name="zip" type="text" placeholder="90210" maxlength="18" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="zip" type="text" placeholder="90210" maxlength="18" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-2">
@@ -115,7 +115,7 @@
                         <label class="block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2" for="phone">
                             Phone Number
                         </label>
-                        <input name="phone" type="tel" placeholder="757-867-5309" maxlength="18" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-light">
+                        <input name="phone" type="tel" placeholder="757-867-5309" maxlength="18" class="appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal">
                     </div>
                 </div>
 
