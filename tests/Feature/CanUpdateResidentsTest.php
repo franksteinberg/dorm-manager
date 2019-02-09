@@ -4,11 +4,11 @@ namespace Tests\Feature;
 
 use App\Resident;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CanUpdateResidentsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /**
      * @test
@@ -16,7 +16,7 @@ class CanUpdateResidentsTest extends TestCase
     public function it_can_update_a_valid_resident_with_valid_data()
     {
         // Arrange
-        $resident = factory(Resident::class)->create();
+        $resident = factory(Resident::class)->create(['gender' => 'M']);
         $newData = [
             'first_name' => 'Barty',
             'last_name' => 'Crouch Jr',
