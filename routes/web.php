@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::prefix('residents')->group(function () {
+    Route::get('/', 'ResidentController@index');
+    Route::get('/create', 'ResidentController@create');
+    Route::get('/{resident}', 'ResidentController@edit');
+});
+

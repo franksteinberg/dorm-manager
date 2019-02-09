@@ -29,7 +29,7 @@ class ResidentController extends Controller
      */
     public function create()
     {
-        //
+        return view('residents.create');
     }
 
     /**
