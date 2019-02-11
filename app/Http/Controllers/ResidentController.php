@@ -46,14 +46,14 @@ class ResidentController extends Controller
                 'first_name' => 'required|string|max:50',
                 'last_name' => 'required|string|max:50',
                 'gender' => 'required|in:M,F',
-                'address1' => 'string|max:100',
-                'address2' => 'string|max:100',
-                'city' => 'string|max:50',
-                'state' => 'string|max:2',
-                'zip' => 'string|max:18',
-                'student_id' => 'string|max:255',
+                'address1' => 'max:100',
+                'address2' => 'max:100',
+                'city' => 'max:50',
+                'state' => 'max:2',
+                'zip' => 'max:18',
+                'student_id' => 'max:255',
                 'birth_date' => 'date',
-                'phone' => 'string|max:25',
+                'phone' => 'max:25',
             ]
         );
 
@@ -75,7 +75,7 @@ class ResidentController extends Controller
         return response()->json([
             'data' => $resident,
             'error' => false,
-            'msg' => "Successfully Retrieved Resident: [{$resident->id}] {$resident->first_name} {$resident->last_name}",
+            'msg' => "Request Successful",
         ], 200);
     }
 
@@ -105,16 +105,16 @@ class ResidentController extends Controller
         collect($this->validate(
             $request,
             [
-                'first_name' => 'string|max:50',
-                'last_name' => 'string|max:50',
-                'address1' => 'string|max:100',
-                'address2' => 'string|max:100',
-                'city' => 'string|max:50',
-                'state' => 'string|max:2',
-                'zip' => 'string|max:18',
-                'student_id' => 'string|max:255',
+                'first_name' => 'max:50',
+                'last_name' => 'max:50',
+                'address1' => 'max:100',
+                'address2' => 'max:100',
+                'city' => 'max:50',
+                'state' => 'max:2',
+                'zip' => 'max:18',
+                'student_id' => 'max:255',
                 'birth_date' => 'date',
-                'phone' => 'string|max:25',
+                'phone' => 'max:25',
             ]
         ))->each(function ($value, $key) use ($resident) {
             $resident->{$key} = $value;
@@ -123,7 +123,7 @@ class ResidentController extends Controller
         return response()->json([
             'data' => ($resident->isDirty()) ? $resident->save() : $resident,
             'error' => false,
-            'msg' => "Successfully Updated Resident: [{$resident->id}] {$resident->first_name} {$resident->last_name}",
+            'msg' => "Update Successful.",
         ]);
     }
 
@@ -140,7 +140,7 @@ class ResidentController extends Controller
         return response()->json([
             'data' => null,
             'error' => false,
-            'msg' => "Successfully Deleted Resident: [{$resident->id}] {$resident->first_name} {$resident->last_name}",
+            'msg' => "Successfully Deleted Resident.",
         ]);
     }
 }

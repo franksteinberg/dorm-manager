@@ -1,5 +1,9 @@
 <template>
     <div class="container p-4 mx-auto">
+        <div v-if="msg" class="dim text-3xl text-teal-light font-bold">
+            <span class="msg">{{ msg }}</span>
+        </div>
+
         <div v-if="loading">
             <div class="loader">Loading...</div>
         </div>
@@ -183,6 +187,7 @@
             return {
                 resident: Vue.util.extend({}, this.residentBefore),
                 loading: false,
+                msg: ''
             }
         },
 
@@ -210,8 +215,9 @@
 
         methods: {
             submitForm() {
+                self = this
                 this.loading = true
-                axios.post('/api/residents', {
+                axios.patch('/api/residents/' + this.resident.id, {
                     first_name: this.resident.first_name,
                     last_name: this.resident.last_name,
                     gender: this.resident.gender,
@@ -224,12 +230,16 @@
                     zip: this.resident.zip,
                     phone: this.resident.phone,
                 }).then(response => {
-                    window.location('/residents/' + response.data.data.id + '/edit')
+                    self.loading = false
+                    self.resident = response.data.data
+                    self.msg = response.data.msg
+                    setTimeout(function () {
+                        self.msg = ''
+                    }, 1000)
+                }).catch(error => {
+                    this.loading = false
+                    console.log(error)
                 })
-                    .catch(error => {
-                        this.loading = false
-                        console.log(error)
-                    })
             },
 
             removeHousing() {
@@ -243,11 +253,23 @@
 
 
                 this.loading = true
+
                 self = this
-                setTimeout(function() {
-                    self.loading = false
+
+                axios.patch('/api/beds/' + self.resident.bed.id, {
+                    remove_resident: true,
+                }).then(response => {
                     self.resident.bed = null
-                }, 1000)
+                    self.loading = false
+                    self.msg = response.data.msg
+                    setTimeout(function () {
+                        self.msg = ''
+                    }, 1000)
+
+                }).catch(error => {
+                    self.loading = false
+                    console.log(error)
+                })
 
             },
 
@@ -273,3 +295,31 @@
         },
     }
 </script>
+
+<style>
+    .dim
+    {
+        height:100%;
+        width:100%;
+        position:fixed;
+        left:0;
+        top:0;
+        z-index:100 !important;
+        background-color:black;
+        filter: alpha(opacity=75); /* internet explorer */
+        -moz-opacity: 0.75;       /* mozilla, netscape */
+        opacity: 0.75;           /* fx, safari, opera */
+    }
+
+    .dim .msg {
+        display:inline-block;
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>

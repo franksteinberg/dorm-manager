@@ -63,7 +63,6 @@ class CanUpdateResidentsTest extends TestCase
         $expectedResponse = json_encode([
             "message" => "The given data was invalid.",
             "errors" => [
-                "first_name" => ["The first name must be a string."],
                 "birth_date" => ["The birth date is not a valid date."]
             ]
         ]);
