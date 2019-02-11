@@ -69,7 +69,20 @@ class BedController extends Controller
      */
     public function update(Request $request, Bed $bed)
     {
-        //
+        $validatedData = $this->validate($request, [
+            'resident_id' => 'exists:residents,id',
+            'remove_resident' => 'boolean',
+        ]);
+
+        if ($request->input('remove_resident') === true) {
+            return response()->json([
+                'data' => [
+                    'unitGender' => $bed->removeResident()
+                ],
+                'error' => false,
+                'msg' => 'Bed has been unassigned.'
+            ]);
+        }
     }
 
     /**

@@ -7,7 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        <title>Add a New Resident</title>
+        <title>Edit Resident</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -16,7 +16,7 @@
     <body class="bg-teal-lightest">
 
         <div id="app">
-            <new-resident :states="{{ json_encode(config('states')) }}"></new-resident>
+            <edit-resident :states="{{ json_encode(config('states')) }}" :resident-before="{{ json_encode($resident) }}"></edit-resident>
         </div>
 
     </body>

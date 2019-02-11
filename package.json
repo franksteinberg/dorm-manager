@@ -25,5 +25,8 @@
     "vue-template-compiler": "^2.6.4",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "vee-validate": "^2.1.7"
   }
 }

@@ -10,4 +10,9 @@ class Resident extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function bed()
+    {
+        return $this->hasOne(Bed::class);
+    }
 }

@@ -15,10 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::bind('resident_with_housing', function($id) {
+    return \App\Resident::with('bed.room.unit.building')->findOrFail($id);
+});
+
 
 Route::prefix('residents')->group(function () {
     Route::get('/', 'ResidentController@index');
     Route::get('/create', 'ResidentController@create');
-    Route::get('/{resident}', 'ResidentController@edit');
+    Route::get('/{resident_with_housing}', 'ResidentController@edit');
 });
 

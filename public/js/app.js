@@ -1754,10 +1754,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditResident.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditResident.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1779,9 +1779,425 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      resident: Vue.util.extend({}, this.residentBefore),
+      loading: false
+    };
+  },
+  props: {
+    'states': {
+      'type': Object
+    },
+    'residentBefore': {
+      'type': Object,
+      'default': {
+        first_name: 'this.resident.first_name',
+        last_name: 'this.resident.last_name',
+        gender: 'this.resident.gender',
+        birth_date: 'this.resident.birth_date',
+        student_id: 'this.resident.student_id',
+        address1: 'this.resident.address1',
+        address2: 'this.resident.address2',
+        city: 'this.resident.city',
+        state: 'this.resident.state',
+        zip: 'this.resident.zip',
+        phone: 'this.resident.phone'
+      }
+    }
+  },
+  methods: {
+    submitForm: function submitForm() {
+      var _this = this;
+
+      this.loading = true;
+      axios.post('/api/residents', {
+        first_name: this.resident.first_name,
+        last_name: this.resident.last_name,
+        gender: this.resident.gender,
+        birth_date: this.resident.birth_date,
+        student_id: this.resident.student_id,
+        address1: this.resident.address1,
+        address2: this.resident.address2,
+        city: this.resident.city,
+        state: this.resident.state,
+        zip: this.resident.zip,
+        phone: this.resident.phone
+      }).then(function (response) {
+        window.location('/residents/' + response.data.data.id + '/edit');
+      }).catch(function (error) {
+        _this.loading = false;
+        console.log(error);
+      });
+    },
+    removeHousing: function removeHousing() {
+      if (this.unsavedChanges(this.resident, this.residentBefore)) {
+        var confirmation = confirm('You have unsaved changes which will be lost if you do not save them first. Continue?');
+
+        if (!confirmation) {
+          return;
+        }
+      }
+
+      this.loading = true;
+      self = this;
+      setTimeout(function () {
+        self.loading = false;
+        self.resident.bed = null;
+      }, 1000);
+    },
+    unsavedChanges: function unsavedChanges(current, original) {
+      var fieldsToCheck = ['first_name', 'last_name', 'birth_date', 'student_id', 'student_id', 'address1', 'address2', 'city', 'state', 'zip', 'phone'];
+      return fieldsToCheck.find(function (fieldName) {
+        return current[fieldName] != original[fieldName];
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewResident.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewResident.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      resident: {
+        first_name: '',
+        last_name: '',
+        gender: '',
+        birth_date: '',
+        student_id: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        phone: ''
+      },
+      loading: false
+    };
+  },
+  props: {
+    'states': {
+      'type': Object
+    }
+  },
+  methods: {
+    submitForm: function submitForm() {
+      var _this = this;
+
+      this.loading = true;
+      axios.post('/api/residents', {
+        first_name: this.resident.first_name,
+        last_name: this.resident.last_name,
+        gender: this.resident.gender,
+        birth_date: this.resident.birth_date,
+        student_id: this.resident.student_id,
+        address1: this.resident.address1,
+        address2: this.resident.address2,
+        city: this.resident.city,
+        state: this.resident.state,
+        zip: this.resident.zip,
+        phone: this.resident.phone
+      }).then(function (response) {
+        window.location.href = '/residents/' + response.data.data.id;
+      }).catch(function (error) {
+        _this.loading = false;
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -36628,10 +37044,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -36643,29 +37059,1649 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container p-4 mx-auto" }, [
+    _vm.loading
+      ? _c("div", [
+          _c("div", { staticClass: "loader" }, [_vm._v("Loading...")])
+        ])
+      : _c("div", [
+          _c(
+            "div",
+            {
+              staticClass:
+                "text-5xl leading-loose tracking-tight text-teal-darker m-3 uppercase"
+            },
+            [_vm._v("\n            Edit Resident\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass:
+                "px-4 pt-4 pb-16  bg-white w-100 border border-grey-light shadow shadow-lg rounded",
+              attrs: { name: "create-resident" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submitForm($event)
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2"
+                },
+                [_vm._v("Basic Info")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "first_name" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        First Name\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.first_name,
+                          expression: "resident.first_name"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "first_name",
+                        required: "",
+                        "aria-required": "true",
+                        type: "text",
+                        maxlength: "50",
+                        placeholder: "Jane"
+                      },
+                      domProps: { value: _vm.resident.first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "first_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-full md:w-1/2 px-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                      attrs: { for: "last_name" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Last Name\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.resident.last_name,
+                        expression: "resident.last_name"
+                      }
+                    ],
+                    staticClass:
+                      "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                    attrs: {
+                      name: "last_name",
+                      required: "",
+                      "aria-required": "true",
+                      type: "text",
+                      maxlength: "50",
+                      placeholder: "Doe"
+                    },
+                    domProps: { value: _vm.resident.last_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.resident, "last_name", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "gender" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Gender\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "relative" }, [
+                      _vm.resident.gender == "F"
+                        ? _c(
+                            "span",
+                            { staticClass: "text-xl text-grey-darkest" },
+                            [_vm._v("Female")]
+                          )
+                        : _c(
+                            "span",
+                            { staticClass: "text-xl text-grey-darkest" },
+                            [_vm._v("Male")]
+                          )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "birth_date" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Date of Birth\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.birth_date,
+                          expression: "resident.birth_date"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "birth_date",
+                        maxlength: "50",
+                        type: "date",
+                        placeholder: "12/22/1997"
+                      },
+                      domProps: { value: _vm.resident.birth_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "birth_date",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "student_id" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Student ID\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.student_id,
+                          expression: "resident.student_id"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "student_id",
+                        maxlength: "50",
+                        type: "text",
+                        placeholder: "JD-8513789"
+                      },
+                      domProps: { value: _vm.resident.student_id },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "student_id",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2 mt-8"
+                },
+                [_vm._v("Address Info")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "address1" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Address 1\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.address1,
+                          expression: "resident.address1"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "address1",
+                        type: "text",
+                        maxlength: "100",
+                        placeholder: "200 Woodstock Lane"
+                      },
+                      domProps: { value: _vm.resident.address1 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "address1",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "address2" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Address 2\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.address2,
+                          expression: "resident.address2"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "address2",
+                        type: "text",
+                        maxlength: "100",
+                        placeholder: "Unit 3F"
+                      },
+                      domProps: { value: _vm.resident.address2 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "address2",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "city" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        City\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.city,
+                          expression: "resident.city"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "city",
+                        type: "text",
+                        maxlength: "50",
+                        placeholder: "Albuquerque"
+                      },
+                      domProps: { value: _vm.resident.city },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "city", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "state" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        State\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "relative" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.resident.state,
+                              expression: "resident.state"
+                            }
+                          ],
+                          staticClass:
+                            "block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                          attrs: { name: "state" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.resident,
+                                "state",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", [_vm._v("Select one...")]),
+                          _vm._v(" "),
+                          _vm._l(_vm.states, function(stateName, stateAbbr) {
+                            return _c(
+                              "option",
+                              { domProps: { value: stateAbbr } },
+                              [_vm._v(_vm._s(stateName))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darkest"
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "fill-current h-4 w-4",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "zip" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Zip\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.zip,
+                          expression: "resident.zip"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "zip",
+                        type: "text",
+                        placeholder: "90210",
+                        maxlength: "18"
+                      },
+                      domProps: { value: _vm.resident.zip },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "zip", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "phone" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Phone Number\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.phone,
+                          expression: "resident.phone"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "phone",
+                        type: "tel",
+                        placeholder: "757-867-5309",
+                        maxlength: "18"
+                      },
+                      domProps: { value: _vm.resident.phone },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "phone", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              this.resident.bed
+                ? _c("div", [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-full flex flex-wrap mb-6 justify-between mb-2 mt-8"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex-1 uppercase tracking-wide text-teal-dark text-xl font-bold"
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Housing Info\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex-shrink float-right mb-3 text-lg text-grey cursor-pointer hover:text-grey-dark hover:underline",
+                            on: { click: _vm.removeHousing }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Remove housing assignment?\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-full flex flex-wrap mb-6" }, [
+                      _c("div", { staticClass: "flex-1 mb-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "w-full uppercase tracking-wide text-grey-darkest text-sm font-bold mb-2",
+                            attrs: { for: "building" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Building\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "w-full flex" }, [
+                          _c("div", { staticClass: "flex-initial" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "w-full uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                                attrs: { for: "building_name" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Name\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-grey-darkest" },
+                              [
+                                _vm._v(
+                                  _vm._s(
+                                    this.resident.bed.room.unit.building.name
+                                  )
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-1 mb-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "w-full uppercase tracking-wide text-grey-darkest text-sm font-bold mb-2",
+                            attrs: { for: "unit" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Unit\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "w-full flex" }, [
+                          _c("div", { staticClass: "flex-initial" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "w-full uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                                attrs: { for: "unit_floor" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Floor\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-grey-darkest" },
+                              [
+                                _vm._v(
+                                  _vm._s(this.resident.bed.room.unit.floor)
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-initial" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "w-full uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                                attrs: { for: "unit_number" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Number\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-grey-darkest" },
+                              [_vm._v(_vm._s(this.resident.bed.room.unit.id))]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-1 mb-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "w-full uppercase tracking-wide text-grey-darkest text-sm font-bold mb-2",
+                            attrs: { for: "room" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Room\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "w-full flex" }, [
+                          _c("div", { staticClass: "flex-initial" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "w-full uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                                attrs: { for: "unit_floor" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Number\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-grey-darkest" },
+                              [_vm._v(_vm._s(this.resident.bed.room.number))]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-initial" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "w-full uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                                attrs: { for: "unit_number" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Bed\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-grey-darkest" },
+                              [_vm._v(_vm._s(this.resident.bed.number))]
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._m(0)
+            ]
+          )
+        ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
+    return _c("div", { staticClass: "block float-right mb-16" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "float-right bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mb-6 rounded uppercase",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Save")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container p-4 mx-auto" }, [
+    _vm.loading
+      ? _c("div", [
+          _c("div", { staticClass: "loader" }, [_vm._v("Loading...")])
         ])
-      ])
+      : _c("div", [
+          _c(
+            "div",
+            {
+              staticClass:
+                "text-5xl leading-loose tracking-tight text-teal-darker m-3 uppercase"
+            },
+            [_vm._v("\n            Add a New Resident\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass:
+                "px-4 pt-4 pb-16  bg-white w-100 border border-grey-light shadow shadow-lg rounded",
+              attrs: { name: "create-resident" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submitForm($event)
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2"
+                },
+                [_vm._v("Basic Info")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "first_name" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        First Name\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.first_name,
+                          expression: "resident.first_name"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "first_name",
+                        required: "",
+                        "aria-required": "true",
+                        type: "text",
+                        maxlength: "50",
+                        placeholder: "Jane"
+                      },
+                      domProps: { value: _vm.resident.first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "first_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-full md:w-1/2 px-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                      attrs: { for: "last_name" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Last Name\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.resident.last_name,
+                        expression: "resident.last_name"
+                      }
+                    ],
+                    staticClass:
+                      "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                    attrs: {
+                      name: "last_name",
+                      required: "",
+                      "aria-required": "true",
+                      type: "text",
+                      maxlength: "50",
+                      placeholder: "Doe"
+                    },
+                    domProps: { value: _vm.resident.last_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.resident, "last_name", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "gender" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Gender\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "relative" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.resident.gender,
+                              expression: "resident.gender"
+                            }
+                          ],
+                          staticClass:
+                            "block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                          attrs: {
+                            name: "gender",
+                            required: "",
+                            "aria-required": "true"
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.resident,
+                                "gender",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", [_vm._v("Choose one...")]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "F" } }, [
+                            _vm._v("Female")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "M" } }, [
+                            _vm._v("Male")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darkest"
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "fill-current h-4 w-4",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "birth_date" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Date of Birth\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.birth_date,
+                          expression: "resident.birth_date"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "birth_date",
+                        maxlength: "50",
+                        type: "date",
+                        placeholder: "12/22/1997"
+                      },
+                      domProps: { value: _vm.resident.birth_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "birth_date",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "student_id" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Student ID\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.student_id,
+                          expression: "resident.student_id"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "student_id",
+                        maxlength: "50",
+                        type: "text",
+                        placeholder: "JD-8513789"
+                      },
+                      domProps: { value: _vm.resident.student_id },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "student_id",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "block uppercase tracking-wide text-teal-dark text-xl font-bold mb-2 mt-8"
+                },
+                [_vm._v("Address Info")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "address1" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Address 1\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.address1,
+                          expression: "resident.address1"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "address1",
+                        type: "text",
+                        maxlength: "100",
+                        placeholder: "200 Woodstock Lane"
+                      },
+                      domProps: { value: _vm.resident.address1 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "address1",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                        attrs: { for: "address2" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Address 2\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.address2,
+                          expression: "resident.address2"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "address2",
+                        type: "text",
+                        maxlength: "100",
+                        placeholder: "Unit 3F"
+                      },
+                      domProps: { value: _vm.resident.address2 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.resident,
+                            "address2",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "hidden text-red text-xs italic" })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "city" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        City\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.city,
+                          expression: "resident.city"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "city",
+                        type: "text",
+                        maxlength: "50",
+                        placeholder: "Albuquerque"
+                      },
+                      domProps: { value: _vm.resident.city },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "city", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "state" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        State\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "relative" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.resident.state,
+                              expression: "resident.state"
+                            }
+                          ],
+                          staticClass:
+                            "block appearance-none w-full bg-grey-lighter border border-grey-light text-grey-darkest py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                          attrs: { name: "state" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.resident,
+                                "state",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", [_vm._v("Select one...")]),
+                          _vm._v(" "),
+                          _vm._l(_vm.states, function(stateName, stateAbbr) {
+                            return _c(
+                              "option",
+                              { domProps: { value: stateAbbr } },
+                              [_vm._v(_vm._s(stateName))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darkest"
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "fill-current h-4 w-4",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "zip" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Zip\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.zip,
+                          expression: "resident.zip"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "zip",
+                        type: "text",
+                        placeholder: "90210",
+                        maxlength: "18"
+                      },
+                      domProps: { value: _vm.resident.zip },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "zip", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block uppercase tracking-wide text-grey-darkest text-xs font-bold mb-2",
+                        attrs: { for: "phone" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Phone Number\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.resident.phone,
+                          expression: "resident.phone"
+                        }
+                      ],
+                      staticClass:
+                        "appearance-none block w-full bg-grey-lighter text-grey-darkest border border-grey-light rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-teal",
+                      attrs: {
+                        name: "phone",
+                        type: "tel",
+                        placeholder: "757-867-5309",
+                        maxlength: "18"
+                      },
+                      domProps: { value: _vm.resident.phone },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.resident, "phone", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ]
+          )
+        ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block float-right mb-16" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "float-right bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mb-6 rounded uppercase",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Save")]
+      )
     ])
   }
 ]
@@ -48712,7 +50748,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
+Vue.component('new-resident', __webpack_require__(/*! ./components/NewResident.vue */ "./resources/js/components/NewResident.vue").default);
+Vue.component('edit-resident', __webpack_require__(/*! ./components/EditResident.vue */ "./resources/js/components/EditResident.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -48783,17 +50820,17 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/EditResident.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/EditResident.vue ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditResident.vue?vue&type=template&id=319f9c65& */ "./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65&");
+/* harmony import */ var _EditResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditResident.vue?vue&type=script&lang=js& */ "./resources/js/components/EditResident.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -48803,9 +50840,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _EditResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -48815,38 +50852,107 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
+component.options.__file = "resources/js/components/EditResident.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/EditResident.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/EditResident.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditResident.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditResident.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65& ***!
+  \*********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditResident.vue?vue&type=template&id=319f9c65& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditResident.vue?vue&type=template&id=319f9c65&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResident_vue_vue_type_template_id_319f9c65___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/NewResident.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/NewResident.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewResident.vue?vue&type=template&id=7986adf5& */ "./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5&");
+/* harmony import */ var _NewResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewResident.vue?vue&type=script&lang=js& */ "./resources/js/components/NewResident.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NewResident.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NewResident.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/NewResident.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NewResident.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewResident.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewResident_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewResident.vue?vue&type=template&id=7986adf5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewResident.vue?vue&type=template&id=7986adf5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewResident_vue_vue_type_template_id_7986adf5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

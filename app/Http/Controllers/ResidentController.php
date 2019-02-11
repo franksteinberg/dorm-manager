@@ -43,14 +43,17 @@ class ResidentController extends Controller
         $validatedProperties = $this->validate(
             $request,
             [
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
+                'first_name' => 'required|string|max:50',
+                'last_name' => 'required|string|max:50',
                 'gender' => 'required|in:M,F',
-                'address1' => 'string|max:255',
-                'address2' => 'string|max:255',
+                'address1' => 'string|max:100',
+                'address2' => 'string|max:100',
+                'city' => 'string|max:50',
+                'state' => 'string|max:2',
+                'zip' => 'string|max:18',
                 'student_id' => 'string|max:255',
                 'birth_date' => 'date',
-                'phone' => 'string|max:255',
+                'phone' => 'string|max:25',
             ]
         );
 
@@ -82,9 +85,11 @@ class ResidentController extends Controller
      * @param  \App\Resident  $resident
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resident $resident)
+    public function edit(Resident $resident_with_housing)
     {
-        //
+        return view('residents.edit', [
+            'resident' => $resident_with_housing,
+        ]);
     }
 
     /**
@@ -100,13 +105,16 @@ class ResidentController extends Controller
         collect($this->validate(
             $request,
             [
-                'first_name' => 'string|max:255',
-                'last_name' => 'string|max:255',
-                'address1' => 'string|max:255',
-                'address2' => 'string|max:255',
+                'first_name' => 'string|max:50',
+                'last_name' => 'string|max:50',
+                'address1' => 'string|max:100',
+                'address2' => 'string|max:100',
+                'city' => 'string|max:50',
+                'state' => 'string|max:2',
+                'zip' => 'string|max:18',
                 'student_id' => 'string|max:255',
                 'birth_date' => 'date',
-                'phone' => 'string|max:255',
+                'phone' => 'string|max:25',
             ]
         ))->each(function ($value, $key) use ($resident) {
             $resident->{$key} = $value;
