@@ -15,7 +15,7 @@
     </head>
     <body class="bg-teal-lightest">
 
-        <div id="app">
+        <div id="app" data-app>
             <new-resident :states="{{ json_encode(config('states')) }}"></new-resident>
         </div>
 

@@ -38,16 +38,13 @@ class DatabaseSeeder extends Seeder
     {
         $genders = [null, 'M', 'F'];
 
-        // Create 4 floors worth of units for the Building.
-        for ($floor = 1; $floor <= 4; $floor++) {
-            $units = factory(Unit::class, 4)->create([
-                'building_id' => $building,
-                'floor' => $floor,
-                'gender' => $genders[$floor] ?? null, // We're going to add residents to the first two floors.
-            ]);
+        $units = factory(Unit::class, 4)->create([
+            'building_id' => $building,
+            'floor' => $floor,
+            'gender' => $genders[$floor] ?? null, // We're going to add residents to the first two floors.
+        ]);
 
-            $this->createRooms($units);
-        }
+        $this->createRooms($units);
     }
 
     protected function createRooms(Collection $units)

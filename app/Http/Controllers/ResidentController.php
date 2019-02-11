@@ -15,10 +15,14 @@ class ResidentController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json([
+        /*return response()->json([
             'data' => Resident::get(),
             'error' => false,
             ''
+        ]);*/
+
+        return view('residents.index', [
+            'residents' => Resident::with('bed.room.unit.building')->get()
         ]);
     }
 
@@ -120,8 +124,12 @@ class ResidentController extends Controller
             $resident->{$key} = $value;
         });
 
+        if ($resident->isDirty()) {
+            $resident->save();
+        }
+
         return response()->json([
-            'data' => ($resident->isDirty()) ? $resident->save() : $resident,
+            'data' => $resident,
             'error' => false,
             'msg' => "Update Successful.",
         ]);

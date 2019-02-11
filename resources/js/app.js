@@ -9,6 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,6 +26,7 @@ window.Vue = require('vue');
 
 Vue.component('new-resident', require('./components/NewResident.vue').default);
 Vue.component('edit-resident', require('./components/EditResident.vue').default);
+Vue.component('resident-list', require('./components/ResidentList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
